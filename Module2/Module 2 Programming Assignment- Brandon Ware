@@ -15,8 +15,6 @@
 //       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
 //       https://it.pointpark.edu/tutorials/implementation-vs-interface/
 
-
-
 //--------------------------//
 // The stack data structure //
 //--------------------------//
@@ -26,15 +24,13 @@ console.log("The stack data structure");
 //    using 'let items = [];' use 'var items = []'. Note that this
 //    implementation does not use the prototype (see project).
 
-
-
 function Stack() {
   var items = [];
 
   this.push = function(element) {
     items.push(element);
   };
-  // properties and methods go here
+
   this.pop = function() {
     return items.pop();
   };
@@ -43,9 +39,9 @@ function Stack() {
     return items[items.length - 1];
   };
 
-this.isEmpty = function() {
-  return items.length === 0;
-};
+  this.isEmpty = function() {
+    return items.length === 0;
+  };
 
   this.size = function() {
     return items.length;
@@ -61,7 +57,6 @@ this.isEmpty = function() {
 }
 
 // 2. Write a simple test program that shows your stack works.
-
 var stack = new Stack();
 stack.push(5);
 stack.push(10);
@@ -73,17 +68,12 @@ stack.pop();
 console.log("After popping one item:");
 stack.print();
 
-
-
-
 //----------------------------------//
 // ECMAScript 6 and the Stack class //
 //----------------------------------//
 console.log("ECMAScript 6 and the Stack class");
 
 // Skip.
-
-
 
 //-------------------------------//
 // Solving problems using stacks //
@@ -103,17 +93,15 @@ while (num > 0) {
   num = Math.floor(num / 2);
 }
 
-
 // 2. The algorithm in (1) can be used to convert a decimal number to a binary
 //    number but there is one issue. What is the problem?
 
 // 3. Solve the problem in (2) using a stack.
-
 function decimalToBinary(decimal) {
   var remStack = new Stack();
   var num = decimal;
   var rem;
-  var binaryString ="";
+  var binaryString = "";
 
   while (num > 0) {
     rem = Math.floor(num % 2);
@@ -125,13 +113,11 @@ function decimalToBinary(decimal) {
     binaryString += remStack.pop().toString();
   }
 
-  return binaryString
+  return binaryString;
 }
 
-console.log("binary of 5 is:", decimalToBinary(5));
-console.log("binary of 25 is:", decimalToBinary(25));
-
-
+console.log("Binary of 5 is:", decimalToBinary(5));
+console.log("Binary of 25 is:", decimalToBinary(25));
 
 //--------------------------//
 // The queue data structure //
@@ -142,16 +128,10 @@ console.log("The queue data structure");
 //    where a stack is appropriate and one example where a queue is
 //    appropriate (that has not yet been discussed in class).
 
-
-
 //------------------//
 // Creating a queue //
 //------------------//
 console.log("Creating a queue");
-
-// 1. Implement the queue data structure described in the book. Instead of
-//    using 'let items = [];' use 'var items = []'. Note that this
-//    implementation does not use the prototype (see project).
 
 function Queue() {
   var items = [];
@@ -181,50 +161,35 @@ function Queue() {
   };
 }
 
-
-
-// 2. Write a simple test program that shows your queue works.
-
-
-
 //--------------------//
 // The priority queue //
 //--------------------//
 console.log("The priority queue");
-
-// The following class is used below.
 
 function QueueElement(element, priority) {
   this.element = element;
   this.priority = priority;
 }
 
-// 1. Finish the implementation below for the priority queue. Note that this
-//    implementation does not use the prototype.
-
 function PriorityQueue() {
   var items = [];
 
   this.enqueue = function(element, priority) {
-    // we need to create a queue element that stores the priority as well
     var queueElement = new QueueElement(element, priority);
     var added = false;
 
-    for (var i =0; i < items.length; i++) {
+    for (var i = 0; i < items.length; i++) {
       if (queueElement.priority < items[i].priority) {
         items.splice(i, 0, queueElement);
         added = true;
         break;
       }
-
-      }
+    }
 
     if (!added) {
       items.push(queueElement);
-
     }
-
-  }
+  };
 
   this.dequeue = function() {
     return items.shift();
@@ -238,37 +203,27 @@ function PriorityQueue() {
     return items.length === 0;
   };
 
-  // this is a helper function that is useful for printing
   this.print = function() {
     for (var i = 0; i < items.length; i++) {
       console.log(`${items[i].element} - ${items[i].priority}`);
     }
   };
-
-
 }
 
-// 2. Write a simple test that makes sure the priority queue works as expected.
+// Test Priority Queue
 var pq = new PriorityQueue();
 pq.enqueue("Low priority task", 5);
 pq.enqueue("Medium task", 3);
-pq.enqueue("High Priority Task", 1);
+pq.enqueue("High priority task", 1);
 console.log("Priority Queue:");
 pq.print();
 console.log("Dequeued item:", pq.dequeue().element);
 pq.print();
 
-
-
 //---------------------------------//
 // The circular queue - Hot Potato //
 //---------------------------------//
 console.log("The circular queue - Hot Potato");
-
-// 1. Finish the implementation for the hot potato game. nameList contains the
-//    names of the participants, and num is how many times the potato is passed
-//    before a participant is ejected from the game (the one that holds the
-//    potato). Note that this is effectively a simulation of the game.
 
 function hotPotato(nameList, num) {
   var queue = new Queue();
@@ -278,24 +233,18 @@ function hotPotato(nameList, num) {
   }
 
   while (queue.size() > 1) {
-    for (var j =0; j < num; j++) {
+    for (var j = 0; j < num; j++) {
       queue.enqueue(queue.dequeue());
     }
     var out = queue.dequeue();
-console.log(out + " is out of the game completely.");
-
+    console.log(out + " is out of the game completely.");
   }
 
   return queue.dequeue();
-
 }
 
-
-
-
-
-// 2. Test the code in (1).
-var names  = ["Brandon", "Jake", "Mia", "Liam", "Emma"];
+// Test Hot Potato
+var names = ["Brandon", "Jake", "Mia", "Liam", "Emma"];
 var winner = hotPotato(names, 3);
 console.log("The Winner is:", winner);
 
