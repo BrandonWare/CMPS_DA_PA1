@@ -33,19 +33,15 @@ console.log("Creating a linked list");
 
 function LinkedList() {
 
-  // helper class
   function Node(element) {
     this.element = element;
     this.next = null;
   }
 
-  // store length and head
   var length = 0;
   var head = null;
 
-  // add a new item to the end of the list
   this.append = function(element) {
-    // if the list is empty, new node becomes the head
     var node = new Node(element);
     var current;
     if (head === null) {
@@ -60,10 +56,12 @@ function LinkedList() {
     length++;
   };
 
-  // insert a new item at a specific location
   this.insert = function(position, element) {
     if (position >= 0 && position <= length) {
-      var node = new Node(element), current = head, previous, index = 0;
+      var node = new Node(element),
+          current = head,
+          previous,
+          index = 0;
       if (position === 0) {
         node.next = head;
         head = node;
@@ -82,10 +80,11 @@ function LinkedList() {
     }
   };
 
-  // remove an element from a specific location
   this.removeAt = function(position) {
     if (position > -1 && position < length) {
-      var current = head, previous, index = 0;
+      var current = head,
+          previous,
+          index = 0;
       if (position === 0) {
         head = current.next;
       } else {
@@ -102,15 +101,14 @@ function LinkedList() {
     }
   };
 
-  // remove a specific element from the list
   this.remove = function(element) {
     var index = this.indexOf(element);
     return this.removeAt(index);
   };
 
-  // return the index of an element in the list
   this.indexOf = function(element) {
-    var current = head, index = 0;
+    var current = head,
+        index = 0;
     while (current) {
       if (current.element === element) {
         return index;
@@ -121,22 +119,18 @@ function LinkedList() {
     return -1;
   };
 
-  // check whether the list is empty
   this.isEmpty = function() {
     return length === 0;
   };
 
-  // return the number of elements in the list
   this.size = function() {
     return length;
   };
 
-  // return head node
   this.getHead = function() {
     return head;
   };
 
-  // overwrite the default toString method
   this.toString = function() {
     var current = head;
     var string = "List: ";
@@ -147,26 +141,20 @@ function LinkedList() {
     return string;
   };
 
-  // print to the console
   this.print = function() {
     console.log(this.toString());
   };
 }
 
-// create a linked list to operate on
 var list = new LinkedList();
-
 list.append("A");
 list.append("B");
 list.append("C");
-list.print(); // List: A -> B -> C
-
+list.print();
 list.insert(1, "D");
-list.print(); // List: A -> D -> B -> C
-
+list.print();
 list.remove("B");
-list.print(); // List: A -> D -> C
-
+list.print();
 console.log("Index of D:", list.indexOf("D"));
 console.log("Size:", list.size());
 console.log("Is Empty:", list.isEmpty());
