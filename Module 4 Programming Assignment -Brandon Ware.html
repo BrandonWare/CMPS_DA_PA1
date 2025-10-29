@@ -21,7 +21,7 @@
 console.log("Creating a set");
 
 function Set() {
-  var items = {}; 
+  var items = {};
 
   this.add = function(value) {
     if (!this.has(value)) {
@@ -172,14 +172,15 @@ function Dictionary() {
   };
 }
 
-// 2. Write some tests that show that your code works.
+// Test Dictionary
 var dict = new Dictionary();
-dict.set("Brandon", "Ware");
-dict.set("Jake", "Hill");
+dict.set("Gandalf", "Wizard");
+dict.set("Frodo", "Hobbit");
+dict.set("Sam", "Friend");
 console.log("Dictionary keys:", dict.keys());
 console.log("Dictionary values:", dict.values());
-console.log("Get Brandon:", dict.get("Brandon"));
-dict.delete("Jake");
+console.log("Get Gandalf:", dict.get("Gandalf"));
+dict.delete("Frodo");
 console.log("After delete:", dict.keys());
 
 
@@ -235,17 +236,6 @@ LinkedList.prototype.removeAt = function(position) {
   }
   this.length--;
   return current.element;
-};
-
-LinkedList.prototype.indexOf = function(element) {
-  var current = this.head;
-  var index = 0;
-  while (current) {
-    if (current.element === element) return index;
-    current = current.next;
-    index++;
-  }
-  return -1;
 };
 
 LinkedList.prototype.isEmpty = function() {
@@ -339,14 +329,14 @@ function HashTable() {
   };
 }
 
-// 2. Write some tests that show that your code works.
+// Test Hash Table
 var hash = new HashTable();
-hash.put("Brandon", "Ware");
-hash.put("Jake", "Hill");
-hash.put("Mia", "Reed");
-console.log("Get Brandon:", hash.get("Brandon"));
+hash.put("Gandalf", "Wizard");
+hash.put("Frodo", "Hobbit");
+hash.put("Sam", "Friend");
+console.log("Get Gandalf:", hash.get("Gandalf"));
 hash.print();
-hash.remove("Jake");
+hash.remove("Frodo");
 hash.print();
 
 console.log("Used LinkedList for collisions to handle separate chaining.");
