@@ -20,11 +20,9 @@
 //--------------------------------//
 console.log("The linked list data structure");
 
-// 1. Suppose you have an array with 1,000 elements and a linked list with 1,000
-//    elements. For both data structures, you want to retrieve the last entry.
-//    Does one data structure complete that operation before the other (i.e.,
-//    is it faster)? If yes, how much faster? If no, why does it take the same
-//    amount of time?
+// Basically, an array is quicker because you can just grab the last item by its index,
+// while a linked list has to go through every single node to get there.
+// So an array is more quick, while a linked list is more work.
 
 //------------------------//
 // Creating a linked list //
