@@ -9,32 +9,39 @@
 // NOTE: You must implement the data structures using the no prototype approach.
 //       This is what the book uses, so you can copy it.
 //       See also: https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
-//       and https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
+// NOTE: Please review the following links regularly:
+//       https://it.pointpark.edu/tutorials/arrays-vs-objects/
+//       https://it.pointpark.edu/tutorials/no-prototype-vs-prototype/
+//       https://it.pointpark.edu/tutorials/implementation-vs-interface/
+
 
 //------------------------//
-// The sorting algorithms //
+// the sorting algorithms //
 //------------------------//
 console.log("The sorting algorithms");
 
-// ArrayList constructor
+// arraylist constructor
 function ArrayList() {
-  let array = [];
+  var array = [];
 
+  // insert
   this.insert = function(item) {
     array.push(item);
   };
 
+  // to string
   this.toString = function() {
     return array.join(", ");
   };
 
-  // Bubble Sort
+  // bubble sort
   this.bubbleSort = function() {
-    let length = array.length;
-    for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length - 1 - i; j++) {
+    var length = array.length;
+    for (var i = 0; i < length; i++) {
+      for (var j = 0; j < length - 1 - i; j++) {
         if (array[j] > array[j + 1]) {
-          let temp = array[j];
+          var temp = array[j];
           array[j] = array[j + 1];
           array[j + 1] = temp;
         }
@@ -42,64 +49,64 @@ function ArrayList() {
     }
   };
 
-  // Selection Sort
+  // selection sort
   this.selectionSort = function() {
-    let length = array.length;
-    for (let i = 0; i < length - 1; i++) {
-      let indexMin = i;
-      for (let j = i; j < length; j++) {
+    var length = array.length;
+    for (var i = 0; i < length - 1; i++) {
+      var indexMin = i;
+      for (var j = i; j < length; j++) {
         if (array[indexMin] > array[j]) {
           indexMin = j;
         }
       }
       if (i !== indexMin) {
-        let temp = array[i];
+        var temp = array[i];
         array[i] = array[indexMin];
         array[indexMin] = temp;
       }
     }
   };
 
-  // Sequential Search
+  // sequential search
   this.sequentialSearch = function(item) {
-    for (let i = 0; i < array.length; i++) {
+    for (var i = 0; i < array.length; i++) {
       if (array[i] === item) {
-        return i; // found
+        return i;
       }
     }
-    return -1; // not found
+    return -1;
   };
 }
 
-// Helper to create a non-sorted array
+// create non sorted array
 function createNonSortedArray(size) {
-  let arrayList = new ArrayList();
-  for (let i = size; i > 0; i--) {
+  var arrayList = new ArrayList();
+  for (var i = size; i > 0; i--) {
     arrayList.insert(i);
   }
   return arrayList;
 }
 
-// Test Bubble Sort
-let list1 = createNonSortedArray(5);
+// test bubble sort
+var list1 = createNonSortedArray(5);
 console.log("Before Bubble Sort: " + list1.toString());
 list1.bubbleSort();
 console.log("After Bubble Sort:  " + list1.toString());
 
-// Test Selection Sort
-let list2 = createNonSortedArray(5);
+// test selection sort
+var list2 = createNonSortedArray(5);
 console.log("Before Selection Sort: " + list2.toString());
 list2.selectionSort();
 console.log("After Selection Sort:  " + list2.toString());
 
-// Test Sequential Search
-let list3 = createNonSortedArray(5);
+// test sequential search
+var list3 = createNonSortedArray(5);
 console.log("Sequential Search for 3: index = " + list3.sequentialSearch(3));
 console.log("Sequential Search for 9: index = " + list3.sequentialSearch(9));
 
 
 //----------------------//
-// Searching algorithms //
+// searching algorithms //
 //----------------------//
 console.log("Searching algorithms done.");
 
